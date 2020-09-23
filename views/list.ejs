@@ -1,0 +1,28 @@
+<%- include('header'); -%>
+    <div class="container">
+
+        <div class="box" id="heading">
+            <h1><%= listTitle %></h1>
+            <h2><%= currentDay %></h2>
+        </div>
+
+        <div class="box" id="item-box">
+            <% itemsList.forEach((item) => { %>
+            <form action="/delete" method="POST">
+                <div class="item">
+                    <button type="submit" name="submit" value="<%= item._id %>" class="delete">
+                        <i class="fas fa-trash-alt fa-lg"></i>
+                    </button>
+                    <p><%= item.name %></p>
+                </div>
+                <input type="hidden" name="listName" value="<%= listTitle %>">
+            </form>
+            <% }) %>
+
+            <form class="item" action="/" method="post">
+                <input type="text" name="newItem" placeholder="New Item" autocomplete="off" required>
+                <button class="addItem" type="submit" name="list" value=<%= listTitle %>>+</button>
+            </form>
+        </div>
+    </div>
+<%- include('footer'); -%>
